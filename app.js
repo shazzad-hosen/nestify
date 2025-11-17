@@ -30,7 +30,7 @@ const { log, assert, error } = require("console");
 const store = MongoStore.create({
   mongoUrl: process.env.ATLAS_DB_URL,
   crypto: {
-    secret: `${process.env.SECRET}`,
+    secret: process.env.SECRET,
   },
   touchAfter: 48 * 3600,
 });
@@ -41,7 +41,7 @@ store.on(error, () => {
 
 const sessionOptions = {
   store,
-  secret: `${process.env.SECRET}`,
+  secret: process.env.SECRET,
   resave: false,
   saveUninitialized: true,
   cookie: {
