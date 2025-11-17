@@ -7,7 +7,7 @@ const { isOwner } = require("../middlewares/isOwner.js");
 const listingController = require("../controllers/listings.controller.js");
 const multer = require("multer");
 const { storage } = require("../cloudConfig.js");
-const upload = multer({ storage });
+const { upload } = require("../cloudConfig.js");
 
 router
   .route("/")

@@ -32,19 +32,22 @@ module.exports.showListings = async (req, res) => {
 
 // Create Route Logic
 module.exports.createNewListing = async (req, res) => {
-  let url = req.file.path;
-  let fileName = req.file.filename;
-
   let { title, description, price, category, country, location } = req.body;
   let listing = {
     title: title,
     description: description,
-    image: { url, fileName },
     price: price,
     category: category,
     country: country,
     location: location,
   };
+
+  if (req.file) {
+    listing.image = {
+      url: req.file.path,
+      filename: req.file.filename,
+    };
+  }
 
   let newListing = await new Listing(listing);
   newListing.owner = req.user._id;
@@ -71,22 +74,22 @@ module.exports.renderEditForm = async (req, res) => {
 module.exports.updateListing = async (req, res) => {
   let { id } = req.params;
   let { title, description, price, category, country, location } = req.body;
-  let listing = {
-    title: title,
-    description: description,
-    price: price,
-    category: category,
-    country: country,
-    location: location,
-  };
-  
-  let listingData = await Listing.findByIdAndUpdate(id, { ...listing });
-  if (typeof req.file !== "undefined") {
-    let url = req.file.path;
-    let fileName = req.file.filename;
-    listingData.image = { url, fileName };
-    await listingData.save();
+
+  let listingData = await Listing.findById(id);
+  listingData.title = title;
+  listingData.description = description;
+  listingData.price = price;
+  listingData.category = category;
+  listingData.country = country;
+  listingData.location = location;
+
+  if (req.file) {
+    listingData.image = {
+      url: req.file.path,
+      filename: req.file.filename,
+    };
   }
+  await listingData.save();
   req.flash("success", "Listing Updated!");
   res.redirect(`/listings/${id}`);
 };
