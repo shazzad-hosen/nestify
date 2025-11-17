@@ -5,8 +5,6 @@ const wrapAsync = require("../utils/wrapAsync.js");
 const { isLoggedIn } = require("../middlewares/loggedIn.js");
 const { isOwner } = require("../middlewares/isOwner.js");
 const listingController = require("../controllers/listings.controller.js");
-const multer = require("multer");
-const { storage } = require("../cloudConfig.js");
 const { upload } = require("../cloudConfig.js");
 
 router
