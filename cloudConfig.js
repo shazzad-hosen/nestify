@@ -1,6 +1,5 @@
 const cloudinary = require("cloudinary").v2;
-const CloudinaryStorage = require("multer-storage-cloudinary");
-const multer = require("multer");
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -8,14 +7,15 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-const storage = CloudinaryStorage({
+const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
-    folder: "Nestify",
+    folder: "nestify_DEV",
     allowed_formats: ["png", "jpg", "jpeg"],
   },
 });
 
-const upload = multer({ storage });
-
-module.exports = { cloudinary, storage, upload };
+module.exports = {
+  cloudinary,
+  storage,
+};
