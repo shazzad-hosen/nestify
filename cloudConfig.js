@@ -8,7 +8,7 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-const storage = new CloudinaryStorage({
+const storage = CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
     folder: "Nestify",
