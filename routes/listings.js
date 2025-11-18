@@ -28,7 +28,7 @@ router
   .put(
     isLoggedIn,
     isOwner,
-    upload.single("image"), // middleware to work with cloud storage
+    upload.single("image"),
     validateListing,
     wrapAsync(listingController.updateListing)
   )
