@@ -34,19 +34,16 @@ module.exports.showListings = async (req, res) => {
 module.exports.createNewListing = async (req, res) => {
   let { title, description, price, category, country, location } = req.body;
   let listing = {
-    title: title,
-    description: description,
-    price: price,
-    category: category,
-    country: country,
-    location: location,
+    title,
+    description,
+    price,
+    category,
+    country,
+    location,
   };
 
-  if (req.file) {
-    listing.image = {
-      url: req.file.path,
-      filename: req.file.filename,
-    };
+  if (req.body.image) {
+    listing.image = req.body.image;
   }
 
   let newListing = await new Listing(listing);
@@ -75,21 +72,20 @@ module.exports.updateListing = async (req, res) => {
   let { id } = req.params;
   let { title, description, price, category, country, location } = req.body;
 
-  let listingData = await Listing.findById(id);
-  listingData.title = title;
-  listingData.description = description;
-  listingData.price = price;
-  listingData.category = category;
-  listingData.country = country;
-  listingData.location = location;
+  let listing = await Listing.findById(id);
 
-  if (req.file) {
-    listingData.image = {
-      url: req.file.path,
-      filename: req.file.filename,
-    };
+  listing.title = title;
+  listing.description = description;
+  listing.price = price;
+  listing.category = category;
+  listing.country = country;
+  listing.location = location;
+
+  if (req.body.image) {
+    listing.image = req.body.image;
   }
-  await listingData.save();
+
+  await listing.save();
   req.flash("success", "Listing Updated!");
   res.redirect(`/listings/${id}`);
 };

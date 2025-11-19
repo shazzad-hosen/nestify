@@ -1,6 +1,6 @@
 const Review = require("../models/review.model.js");
 
-module.exports.isReviewAuthor = async (req, res, next) => {
+module.exports.validateReviewAuthor = async (req, res, next) => {
   let { id, reviewId } = req.params;
   let review = await Review.findById(reviewId);
   if (!review.author.equals(res.locals.currentUser._id)) {

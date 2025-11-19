@@ -1,10 +1,10 @@
 const ExpressError = require("../utils/ExpressError.js");
 const { reviewSchema } = require("../schema.js");
 
-module.exports.validateReview = (req, res, next) => {
+module.exports.validateReviews = (req, res, next) => {
   let { error } = reviewSchema.validate(req.body);
   if (error) {
-    throw new ExpressError(400, error);
+    next(new ExpressError(400, error));
   } else {
     next();
   }

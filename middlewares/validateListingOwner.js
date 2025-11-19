@@ -1,6 +1,6 @@
 const Listing = require("../models/listing.model");
 
-module.exports.isOwner = async (req, res, next) => {
+module.exports.validateListingOwner = async (req, res, next) => {
   let { id } = req.params;
   let currentListing = await Listing.findById(id);
   if (!currentListing.owner.equals(res.locals.currentUser._id)) {
