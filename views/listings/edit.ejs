@@ -1,9 +1,9 @@
 <% layout("/layouts/boilerplate"); %>
 
-<body>
-  <div class="row">
-    <div class="col-8 offset-2 mt-3">
-      <h2> Edit Your Listing </h2>
+<div class="container mt-3">
+  <h2 class="text-center mb-4">Edit Your Listing</h2>
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8">
       <form method="POST" action="/listings/<%=listing._id%>?_method=PUT" novalidate class="needs-validation" enctype="multipart/form-data">
 
         <div class="mb-3">
@@ -18,12 +18,13 @@
           <label for="description" class="form-label">Description</label>
           <textarea name="description" class="form-control" required><%=listing.description%></textarea>
           <div class="invalid-feedback">
-            Price enter a short description!
+            Please enter a short description!
           </div>
         </div>
 
-        <div class="mb-3">
-          <img src="<%= originalImage %>" alt="Previous Listing Image">
+        <!-- Previous Image -->
+        <div class="mb-3 text-center">
+          <img src="<%= originalImage %>" alt="Previous Listing Image" class="img-fluid rounded">
         </div>
 
         <div class="mb-3">
@@ -32,15 +33,15 @@
         </div>
 
         <div class="row">
-          <div class="mb-3 col-md-4">
+          <div class="mb-3 col-12 col-md-4">
             <label for="price" class="form-label">Price</label>
-            <input name="price" class="form-control" value="<%= listing.price%>" required>
+            <input name="price" type="number" class="form-control" value="<%= listing.price %>" required>
             <div class="invalid-feedback">
               Price should be valid!
             </div>
           </div>
 
-          <div class="mb-3 col-4">
+          <div class="mb-3 col-12 col-md-4">
             <label for="category" class="form-label">Category</label>
             <select class="form-select" id="category" name="category" required>
               <option value="<%=listing.category%>">-- Change Category --</option>
@@ -56,28 +57,31 @@
               <option value="Beaches">Beaches</option>
               <option value="Rivers">Rivers</option>
               <option value="Modern Cities">Modern Cities</option>
+              <option value="Others">Others</option>
             </select>
           </div>
 
-
-          <div class="mb-3 col-md-4">
+          <div class="mb-3 col-12 col-md-4">
             <label for="country" class="form-label">Country</label>
-            <input name="country" type="text" class="form-control" value="<%= listing.country%>" required>
+            <input name="country" type="text" class="form-control" value="<%= listing.country %>" required>
             <div class="invalid-feedback">
-              Counrty name should be valid!
+              Country name should be valid!
             </div>
           </div>
         </div>
 
         <div class="mb-3">
           <label for="location" class="form-label">Location</label>
-          <input name="location" type="text" class="form-control" value="<%= listing.location%>" required>
+          <input name="location" type="text" class="form-control" value="<%= listing.location %>" required>
           <div class="invalid-feedback">
             Location should be valid!
           </div>
         </div>
-        <button class="btn btn-dark add-btn mt-3"> Add </button>
+
+        <div class="mb-3">
+          <button class="btn btn-success">Update Listing</button>
+        </div>
       </form>
     </div>
   </div>
-</body>
+</div>

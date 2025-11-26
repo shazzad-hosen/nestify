@@ -24,7 +24,8 @@ app.use(express.static(path.join(__dirname, "/public")));
 const listingRouter = require("./routes/listings.js");
 const searchRouter = require("./routes/search.js");
 const reviewRouter = require("./routes/review.js");
-const userRouter = require("./routes/user.js");
+const userRouter = require("./routes/users.js");
+const profileRoute = require("./routes/profile.js");
 const { log, assert, error } = require("console");
 
 const store = MongoStore.create({
@@ -68,22 +69,31 @@ app.use(flash());
 
 app.use(passport.initialize());
 app.use(passport.session());
-passport.use(new LocalStrategy(User.authenticate()));
+
+passport.use(
+  new LocalStrategy({ usernameField: "email" }, User.authenticate())
+);
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.use((req, res, next) => {
-  res.locals.successMessage = req.flash("success");
-  res.locals.errorMessage = req.flash("error");
+  res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");
+  res.locals.info = req.flash("info");
   res.locals.currentUser = req.user;
   next();
 });
 
 app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
-app.use("/", userRouter);
 app.use("/", searchRouter);
+app.use("/", profileRoute);
+app.use("/", userRouter);
+
+app.get("/", (req, res) => {
+  res.redirect("/listings");
+});
 
 app.use((req, res, next) => {
   next(new ExpressError(404, "Page Not Found!"));

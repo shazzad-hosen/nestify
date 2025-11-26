@@ -1,3 +1,4 @@
+/* Boilerplate */
 body {
     font-family: 'Plus Jakarta Sans', sans-serif !important;
     display: flex;
@@ -7,30 +8,23 @@ body {
 
 .container {
     flex: 1;
-
 }
 
 .navbar {
-    height: 5rem;
+    height: 4rem;
     background-color: #fff;
 }
 
+/* Navbar Compass */
 .fa-compass {
     color: rgb(228, 22, 22);
     font-size: 2rem;
 }
 
-.nav-link {
-    color: #1b0000 !important;
-}
-
+/* Footer */
 .f-info-links a {
     text-decoration: none;
     color: #222222;
-}
-
-.f-info-links a:hover {
-    text-decoration: underline;
 }
 
 .f-info-links,
@@ -58,6 +52,7 @@ body {
     text-align: center;
 }
 
+/* Show Image */
 .listing-card {
     border: none !important;
     margin-bottom: 2rem;
@@ -90,21 +85,74 @@ body {
     opacity: 0.2;
 }
 
-.add-btn {
-    background-color: rgb(228, 22, 22) !important;
-    border: none !important;
-}
-
 .show-img {
     height: 30vh;
     width: 50vh !important;
 }
 
-.btns {
-    display: flex;
-}
-
 .edit-btn {
     background-color: rgb(228, 22, 22) !important;
     border: none !important;
+}
+
+.navbar-nav a {
+    color: black;
+}
+
+#listing-id {
+    text-decoration: none;
+}
+
+/* Menu Style */
+.menu-popup {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    min-width: 140px;
+    z-index: 1000;
+}
+
+.menu-popup a {
+    display: block;
+    padding: 8px 12px;
+    color: #333;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.menu-popup a:hover {
+    background-color: #e9ecef;
+}
+
+.text-center a {
+    text-decoration: none;
+}
+
+/* Profile */
+.profile-page {
+    max-width: 600px !important;
+    background: #e9ecef;
+    padding: 2rem;
+    border-radius: 12px;
+    margin: auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+}
+
+.bio-section p {
+    max-width: 420px;
+    margin: auto;
+    font-size: 0.95rem;
+}
+
+@media (max-width: 576px) {
+    .profile-page {
+        width: 90%;
+        padding: 1.5rem;
+    }
+
+    .profile-page img {
+        width: 120px !important;
+        height: 120px !important;
+    }
 }

@@ -1,10 +1,11 @@
 <% layout("/layouts/boilerplate"); %>
 
-<body>
-  <div class="row">
-    <div class="col-8 offset-2 mt-3">
-      <h2>Create New Listing</h2>
+<div class="container mt-3">
+  <h2 class="text-center mb-4">Create New Listing</h2>
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8">
       <form action="/listings" method="POST" novalidate class="needs-validation" enctype="multipart/form-data">
+
         <div class="mb-3">
           <label for="title" class="form-label">Title</label>
           <input name="title" type="text" class="form-control" placeholder="Enter A Catchy Title" required>
@@ -15,9 +16,9 @@
 
         <div class="mb-3">
           <label for="description" class="form-label">Description</label>
-          <textarea name="description" type="text" class="form-control" required></textarea>
+          <textarea name="description" class="form-control" required></textarea>
           <div class="invalid-feedback">
-            Price enter a short description!
+            Please enter a short description!
           </div>
         </div>
 
@@ -27,15 +28,15 @@
         </div>
 
         <div class="row">
-          <div class="mb-3 col-md-4">
+          <div class="mb-3 col-12 col-md-4">
             <label for="price" class="form-label">Price</label>
-            <input name="price" class="form-control" placeholder="1500 / Night" required>
+            <input name="price" type="number" class="form-control" placeholder="1500 / Night" required>
             <div class="invalid-feedback">
               Price should be valid!
             </div>
           </div>
 
-          <div class="mb-3 col-4">
+          <div class="mb-3 col-12 col-md-4">
             <label for="category" class="form-label">Category</label>
             <select class="form-select" id="category" name="category" required>
               <option value="">-- Choose A Category --</option>
@@ -51,14 +52,15 @@
               <option value="Beaches">Beaches</option>
               <option value="Rivers">Rivers</option>
               <option value="Modern Cities">Modern Cities</option>
+              <option value="Others">Others</option>
             </select>
           </div>
 
-          <div class="mb-3 col-md-4">
-            <label for="country" class="form-label">Counrty</label>
+          <div class="mb-3 col-12 col-md-4">
+            <label for="country" class="form-label">Country</label>
             <input name="country" type="text" class="form-control" placeholder="Bangladesh" required>
             <div class="invalid-feedback">
-              Counrty name should be valid!
+              Country name should be valid!
             </div>
           </div>
         </div>
@@ -70,8 +72,10 @@
             Location should be valid!
           </div>
         </div>
-        <button class="btn btn-dark add-btn mt-3"> Add </button>
+        <div class="mb-3">
+          <button class="btn btn-success mt-2">Add Listing</button>
+        </div>
       </form>
-</body>
-</div>
+    </div>
+  </div>
 </div>

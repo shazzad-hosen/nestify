@@ -3,22 +3,32 @@ const Review = require("../models/review.model.js");
 
 // Create Review Route Logic
 module.exports.createReview = async (req, res) => {
-  let listing = await Listing.findById(req.params.id);
+  let { id } = req.params;
+  let listing = await Listing.findById(id);
+
+  if (!listing) {
+    req.flash("error", "Listing not found");
+    return res.redirect("/listings");
+  }
   let newReview = new Review(req.body.review);
   newReview.author = req.user._id;
   listing.reviews.push(newReview);
 
   await newReview.save();
   await listing.save();
-  req.flash("success", "Review Added!");
-  res.redirect(`/listings/${req.params.id}`);
+  req.flash("success", "Review Added");
+  res.redirect(`/listings/${id}`);
 };
 
 // Delete Review Route Logic
 module.exports.destroyReview = async (req, res) => {
-  let { id, reviewId } = req.params;
-  await Listing.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
-  await Review.findByIdAndDelete(reviewId);
-  req.flash("success", "Review Deleted!");
-  res.redirect(`/listings/${id}`);
+  try {
+    let { id, reviewId } = req.params;
+    await Listing.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
+    await Review.findByIdAndDelete(reviewId);
+    req.flash("success", "Review Deleted");
+    res.redirect(`/listings/${id}`);
+  } catch (error) {
+    req.flash("error", "Review Deletion Failed");
+  }
 };

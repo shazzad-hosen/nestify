@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Review = require("./review.model.js");
+const { required } = require("joi");
 
 const listingSchema = new mongoose.Schema({
   title: {
@@ -31,6 +32,7 @@ const listingSchema = new mongoose.Schema({
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
+    required: true,
   },
   category: {
     type: String,
@@ -47,10 +49,16 @@ const listingSchema = new mongoose.Schema({
       "Beaches",
       "Rivers",
       "Modern Cities",
+      "Others",
     ],
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
   },
 });
 
+// Handling Review Deletion after delete a listing
 listingSchema.post("findOneAndDelete", async (listingData) => {
   if (listingData) {
     await Review.deleteMany({ _id: { $in: listingData.reviews } });

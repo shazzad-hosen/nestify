@@ -4,7 +4,7 @@ const Listing = require("../models/listing.model.js");
 
 main()
   .then((res) => {
-    console.log("connected");
+    console.log("connected to the local database");
   })
   .catch((error) => {
     console.log(error);
@@ -16,7 +16,7 @@ async function main() {
 
 const initDB = async () => {
   await Listing.deleteMany({});
-  await Listing.insertMany(initData.data); // passing data as an array of object
+  await Listing.insertMany(initData.data);
   console.log("data was initialized");
 };
 
