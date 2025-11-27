@@ -37,7 +37,7 @@ Nestify is a full-stack web application that allows users to create, browse, and
 
 - MongoDB for data storage
 
-- Mongoose models and validation(Joi)
+- Mongoose models and validation
 
 - Input sanitization & server-side validation
 
@@ -61,7 +61,7 @@ Backend:
 
 - Express.js
 
-- Database:
+Database:
 
 - MongoDB
 
@@ -80,6 +80,8 @@ Other Tools:
 - Method-Override
 
 - dotenv
+  
+- PassportJS
 
 📂 Folder Structure
 ```
