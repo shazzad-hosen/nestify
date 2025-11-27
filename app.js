@@ -100,7 +100,9 @@ app.use((req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
-  const { status = 500, message = "Something went wrong" } = err;
+  let status = err.status || 500;
+  let message = err.message || "Something went wrong";
+  message = String(message);
   res.status(status).render("error.ejs", { message });
 });
 

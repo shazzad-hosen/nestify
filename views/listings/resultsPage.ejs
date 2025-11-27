@@ -1,30 +1,33 @@
 <% layout("/layouts/boilerplate"); %>
 
-<body>
-  <h2>Search Results for "<%= searchTerm %>"</h2>
-  <div class="row row-cols-lg-3 row-cols-md-3 row-cols-sm-1 mt-3">
+  <div class="container-fluid">
+    <h2 class="mb-4">Search Results for "<%= searchTerm %>"</h2>
+
     <% if (listings.length) { %>
-    <% for (let listing of listings) { %>
-    <div class="col">
-      <a href="/listings/<%= listing._id %>" class="listing-link">
-        <div class="card listing-card">
-          <img src="<%= listing.image.url %>" class="card-img-top" alt="Listing Image" style="height: 20rem">
-          <div class="card-body">
-            <p class="card-text">
-              <b><%= listing.title %> <br></b>
-              &#2547 <%= listing.price.toLocaleString("en-BD") %> / night
-            </p>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
+      <% for (let listing of listings) { %>
+      <div class="col">
+        <a href="/listings/<%= listing._id %>" class="listing-link text-decoration-none">
+          <div class="card listing-card h-100">
+            <img src="<%= listing.image.url %>" class="card-img-top" alt="Listing Image" style="height: 20rem; object-fit: cover;">
+            <div class="card-body">
+              <p class="card-text mb-0">
+                <b><%= listing.title %></b><br>
+                &#2547; <%= listing.price.toLocaleString("en-BD") %> / night
+              </p>
+            </div>
           </div>
-        </div>
-      </a>
+        </a>
+      </div>
+      <% } %>
     </div>
-    <% } %>
     <% } else { %>
-    <div class="row mt-4">
-      <div class="alert alert-danger offset-11" role="alert">
-        <p>No results found for "<%= searchTerm %>" </p>
+    <div class="row justify-content-center mt-4">
+      <div class="col-12 col-sm-10 col-md-8 col-lg-6">
+        <div class="alert alert-danger text-center" role="alert">
+          <p class="mb-0">No results found for "<%= searchTerm %>"</p>
+        </div>
       </div>
     </div>
     <% } %>
   </div>
-</body>
