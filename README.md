@@ -1,4 +1,5 @@
 # 🏡 Nestify
+🔗 Visit here: [Nestify](https://nestify-mvgw.onrender.com/)
 
 A **modern**, **user-friendly** stay-booking platform inspired by **Airbnb**.
 
@@ -80,6 +81,8 @@ Other Tools:
 - Method-Override
 
 - dotenv
+
+- Joi
   
 - PassportJS
 
@@ -206,10 +209,9 @@ MIT License
 ## 📬 Contact
 If you want to connect or have questions:
 
-**Your Name**  
 📧 Email: mdshazzadhosenzisan@gmail.com  
  
-🔗 Facebook: [Facebook](https://m.facebook.com/shazzadhosenzisan/)
+🔗 Facebook: [Md. Shazzad Hosen Zisan](https://m.facebook.com/shazzadhosenzisan/)
 
 ## ⭐ Support
 If you like this project, consider giving it a star!  
