@@ -21,6 +21,22 @@ module.exports.signUp = async (req, res) => {
       return res.redirect("/signup");
     }
 
+    // White Listed Email Domain
+    const allowedDomains = [
+      "gmail.com",
+      "yahoo.com",
+      "protonmail.com",
+      "icloud.com",
+      "outlook.com",
+      "hotmail.com",
+    ];
+    const domain = email.split("@")[1].toLowerCase();
+
+    if (!allowedDomains.includes(domain)) {
+      req.flash("error", "This email domain is not allowed");
+      return res.redirect("/signup");
+    }
+
     if (password.length < 6) {
       req.flash("error", "Password must be at least 6 characters long");
       return res.redirect("/signup");
